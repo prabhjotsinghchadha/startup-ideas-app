@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/nextjs';
 import * as NextImage from 'next/image';
 
 import '../src/styles/globals.css';
