@@ -1,49 +1,83 @@
-const featuresItems = [
-  { icon: '🏎️', name: 'Next.js (app routing)' },
-  { icon: '🔥', name: 'Type checking TypeScript' },
-  { icon: '💅', name: 'Tailwind CSS' },
-  { icon: '✨', name: 'ESlint' },
-  { icon: '✨', name: 'Prettier' },
-  { icon: '🧪', name: 'Jest' },
-  { icon: '🧪', name: 'React Testing Library' },
-  { icon: '📕', name: 'Storybook' },
-  { icon: '💎', name: 'Atomic Design' },
-  { icon: '🚀', name: 'GitHub Actions' },
-  { icon: '💻', name: 'T3 Env' },
-  { icon: '🏁', name: 'Absolute Imports using `@` prefix' }
-];
+import Link from 'next/link';
 
-const HomePage = () => (
-  <div>
-    <section className="bg-white px-4 dark:bg-gray-900">
-      <div className="mx-auto grid max-w-screen-xl px-4 py-8 text-center lg:py-16">
-        <div className="mx-auto place-self-center">
-          <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none tracking-tight dark:text-white md:text-5xl xl:text-6xl">
-            Next.js Enterprise Boilerplate
-          </h1>
-          <p className="mb-6 max-w-2xl font-light text-gray-500 dark:text-gray-400 md:text-lg lg:mb-8 lg:text-xl">
-            Boilerplate and Starter for Next.js, Tailwind CSS and TypeScript ⚡️ Made with developer
-            experience first: Next.js, TypeScript, ESLint, Prettier, Husky, Lint-Staged, Jest, React
-            Testing Library, PostCSS, Tailwind CSS, Storybook, Plop, GH actions.
+import { Example } from '../components/atoms/Example';
+
+const HomePage = () => {
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
+        <h1 className="text-6xl font-bold">
+          Welcome to{' '}
+          <Link href="https://nextjs.org" className="text-blue-600">
+            Next.js!
+          </Link>
+        </h1>
+
+        <p className="mt-3 text-2xl">
+          Now with <span className="font-bold text-purple-600">Redux + TypeScript</span>{' '}
+          integration!
+        </p>
+
+        <div className="mt-8 rounded-lg bg-gradient-to-r from-purple-100 to-blue-100 p-6">
+          <h2 className="mb-4 text-2xl font-bold text-gray-800">🚀 Redux Integration Complete!</h2>
+          <p className="mb-4 text-gray-700">
+            Your Next.js app now includes a complete Redux setup with TypeScript, featuring
+            authentication, UI state management, and user management.
           </p>
-        </div>
-      </div>
-    </section>
-    <div className="mx-auto mt-4 px-4 max-w-screen-lg">
-      <h2 className="text-bold mt-8 mb-10 text-3xl">🚀 Features:</h2>
-      <ul className="grid grid-cols-1 grid-rows-1 md:grid-cols-2 gap-4 lg:grid-cols-4">
-        {featuresItems.map(({ icon, name }) => (
-          <li
-            key={name}
-            className="flex flex-col text-center items-center hover:scale-105 transition-all hover:shadow-xl duration-300 justify-center gap-2 px-4 py-6 border rounded-lg shadow"
+          <Link
+            href="/redux-demo"
+            className="inline-block rounded-lg bg-purple-600 px-6 py-3 text-white hover:bg-purple-700"
           >
-            <span className="text-xl">{icon}</span>
-            <span>{name}</span>
-          </li>
-        ))}
-      </ul>
+            View Redux Demo →
+          </Link>
+        </div>
+
+        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
+          <Link
+            href="/redux-demo"
+            className="mt-6 w-96 rounded-xl border border-purple-200 bg-purple-50 p-6 text-left hover:border-purple-400 hover:text-purple-600"
+          >
+            <h3 className="text-2xl font-bold">Redux Demo &rarr;</h3>
+            <p className="mt-4 text-xl">See Redux state management.</p>
+          </Link>
+
+          <Link
+            href="https://nextjs.org/docs"
+            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
+          >
+            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
+            <p className="mt-4 text-xl">
+              Find in-depth information about Next.js features and its API.
+            </p>
+          </Link>
+
+          <Link
+            href="https://redux-toolkit.js.org/"
+            className="mt-6 w-96 rounded-xl border border-red-200 bg-red-50 p-6 text-left hover:border-red-400 hover:text-red-600"
+          >
+            <h3 className="text-2xl font-bold">Redux Toolkit &rarr;</h3>
+            <p className="mt-4 text-xl">
+              Learn more about Redux Toolkit, the modern way to write Redux logic.
+            </p>
+          </Link>
+
+          <Link
+            href="https://github.com/vercel/next.js/tree/canary/examples"
+            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
+          >
+            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
+            <p className="mt-4 text-xl">
+              Discover and deploy boilerplate example Next.js projects.
+            </p>
+          </Link>
+        </div>
+
+        <div className="mt-6">
+          <Example />
+        </div>
+      </main>
     </div>
-  </div>
-);
+  );
+};
 
 export default HomePage;
