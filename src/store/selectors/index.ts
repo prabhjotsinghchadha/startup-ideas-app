@@ -1,30 +1,32 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import type { Notification, User } from '../../models';
+import type { UIState, UserState } from '../../models';
 import type { RootState } from '../index';
 
 // Auth selectors
 export const selectAuth = (state: RootState) => state.auth;
 export const selectUser = (state: RootState) => state.auth.user;
 export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;
+
 export const selectAuthLoading = (state: RootState) => state.auth.isLoading;
 export const selectAuthError = (state: RootState) => state.auth.error;
 export const selectAuthToken = (state: RootState) => state.auth.token;
 
 // UI selectors
 export const selectUI = (state: RootState) => state.ui;
-export const selectTheme = (state: RootState) => state.ui.theme;
-export const selectSidebarOpen = (state: RootState) => state.ui.sidebarOpen;
-export const selectNotifications = (state: RootState) => state.ui.notifications;
-export const selectGlobalLoading = (state: RootState) => state.ui.isLoading;
-export const selectModals = (state: RootState) => state.ui.modals;
+export const selectTheme = (state: RootState) => (state.ui as UIState).theme;
+export const selectSidebarOpen = (state: RootState) => (state.ui as UIState).sidebarOpen;
+export const selectNotifications = (state: RootState) => (state.ui as UIState).notifications;
+export const selectActiveModal = (state: RootState) => (state.ui as UIState).activeModal;
+export const selectUILoading = (state: RootState) => (state.ui as UIState).loading;
 
 // User selectors
-export const selectUsers = (state: RootState) => state.user.users;
+export const selectUsers = (state: RootState) => (state.user as UserState).users;
 export const selectCurrentUser = (state: RootState) => state.user.currentUser;
-export const selectUserLoading = (state: RootState) => state.user.isLoading;
-export const selectUserError = (state: RootState) => state.user.error;
-export const selectUserPagination = (state: RootState) => state.user.pagination;
+export const selectUserLoading = (state: RootState) => (state.user as UserState).loading;
+export const selectUserError = (state: RootState) => (state.user as UserState).error;
+export const selectCurrentPage = (state: RootState) => (state.user as UserState).currentPage;
+export const selectTotalPages = (state: RootState) => (state.user as UserState).totalPages;
 
 // Memoized selectors
 export const selectUnreadNotifications = createSelector(
