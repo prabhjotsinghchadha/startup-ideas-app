@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import type { UIState, UserState } from '../../models';
+import type { UIState, UserState, User, Notification } from '../../models';
 import type { RootState } from '../index';
 
 // Auth selectors
@@ -17,16 +17,17 @@ export const selectUI = (state: RootState) => state.ui;
 export const selectTheme = (state: RootState) => (state.ui as UIState).theme;
 export const selectSidebarOpen = (state: RootState) => (state.ui as UIState).sidebarOpen;
 export const selectNotifications = (state: RootState) => (state.ui as UIState).notifications;
-export const selectActiveModal = (state: RootState) => (state.ui as UIState).activeModal;
-export const selectUILoading = (state: RootState) => (state.ui as UIState).loading;
+export const selectModals = (state: RootState) => (state.ui as UIState).modals;
+export const selectUILoading = (state: RootState) => (state.ui as UIState).isLoading;
 
 // User selectors
 export const selectUsers = (state: RootState) => (state.user as UserState).users;
 export const selectCurrentUser = (state: RootState) => state.user.currentUser;
-export const selectUserLoading = (state: RootState) => (state.user as UserState).loading;
+export const selectUserLoading = (state: RootState) => (state.user as UserState).isLoading;
 export const selectUserError = (state: RootState) => (state.user as UserState).error;
-export const selectCurrentPage = (state: RootState) => (state.user as UserState).currentPage;
-export const selectTotalPages = (state: RootState) => (state.user as UserState).totalPages;
+export const selectCurrentPage = (state: RootState) => (state.user as UserState).pagination.page;
+export const selectTotalPages = (state: RootState) =>
+  (state.user as UserState).pagination.totalPages;
 
 // Memoized selectors
 export const selectUnreadNotifications = createSelector(
@@ -68,8 +69,8 @@ export const selectAuthenticatedUserProfile = createSelector(
 );
 
 export const selectAppLoadingState = createSelector(
-  [selectAuthLoading, selectUserLoading, selectGlobalLoading],
-  (authLoading, userLoading, globalLoading) => authLoading || userLoading || globalLoading
+  [selectAuthLoading, selectUserLoading, selectUILoading],
+  (authLoading, userLoading, uiLoading) => authLoading || userLoading || uiLoading
 );
 
 export const selectHasErrors = createSelector(

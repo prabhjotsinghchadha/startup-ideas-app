@@ -9,6 +9,20 @@ export interface User {
   updatedAt: string;
 }
 
+// User State types (for Redux user slice)
+export interface UserState {
+  users: User[];
+  currentUser: User | null;
+  isLoading: boolean;
+  error: string | null;
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
+
 // Authentication types
 export interface AuthState {
   user: User | null;
